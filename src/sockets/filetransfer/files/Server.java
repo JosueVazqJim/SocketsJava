@@ -1,9 +1,11 @@
 package sockets.filetransfer.files;
 
+import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
 public class Server {
+    public static final String FILES_PATH = "../storage";
     private ServerSocket serverSocket;
     public static final int PORT = 5000;
 
@@ -24,7 +26,11 @@ public class Server {
                 if (clientSocket.isConnected()){
                     new Thread( ()->{
                         ClientConnection client = new ClientConnection(clientSocket);
-                        client.sendFile();
+                        try {
+                            client.sendFile();
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
                     }).start();
                 }
             } catch (Exception e) {
