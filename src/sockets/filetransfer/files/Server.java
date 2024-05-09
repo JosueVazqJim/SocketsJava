@@ -5,7 +5,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 public class Server {
-    public static final String FILES_PATH = "../storage";
+    public static final String FILES_PATH = "src/sockets/filetransfer/storage";
     private ServerSocket serverSocket;
     public static final int PORT = 5000;
 
@@ -28,6 +28,7 @@ public class Server {
                         ClientConnection client = new ClientConnection(clientSocket);
                         try {
                             client.sendFile();
+                            client.close();
                         } catch (IOException e) {
                             throw new RuntimeException(e);
                         }
@@ -37,5 +38,9 @@ public class Server {
                 e.printStackTrace();
             }
         }
+    }
+
+    public static void main(String[] args) {
+        new Server();
     }
 }

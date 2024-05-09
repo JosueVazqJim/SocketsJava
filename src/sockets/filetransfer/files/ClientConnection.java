@@ -52,4 +52,14 @@ public class ClientConnection {
 
         out.writeUTF(menu);
     }
+
+    public void close() {
+        try {
+            in.close();
+            out.close();
+            socket.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
