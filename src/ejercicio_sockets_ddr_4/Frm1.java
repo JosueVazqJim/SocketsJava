@@ -37,7 +37,7 @@ public class Frm1 extends JDialog implements Observer { //es un observador, es a
 
         this.textArea1.append(mensaje);
 
-        Cliente c = new Cliente("192.168.56.1", 5000, mensaje); //creamos un cliente en el puerto 6000
+        Cliente c = new Cliente("192.168.100.15", 5000, mensaje); //creamos un cliente en el puerto 6000
         Thread t = new Thread(c); //creamos un hilo para el cliente
         t.start(); //iniciamos el hilo
     }
